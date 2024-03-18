@@ -88,5 +88,5 @@ class WMPcrawler:
                 manager.execute_command_sequence(command_sequence)
 
 if __name__ == '__main__':
-    crawler = WMPcrawler('http://www.dr.dk')
+    crawler = WMPcrawler(['http://www.dr.dk'])
     crawler.run()
