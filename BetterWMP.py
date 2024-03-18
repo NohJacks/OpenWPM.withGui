@@ -56,7 +56,7 @@ class WMPcrawler:
         # manager_params.memory_watchdog = True
         # manager_params.process_watchdog = True
 
-    def run(self,):
+    def run(self):
         # Commands time out by default after 60 seconds
         with TaskManager(
             self.manager_params,
@@ -87,6 +87,6 @@ class WMPcrawler:
                 # Run commands across all browsers (simple parallelization)
                 manager.execute_command_sequence(command_sequence)
 
-if __name__ = '__main__':
+if __name__ == '__main__':
     crawler = WMPcrawler('http://www.dr.dk')
     crawler.run()
