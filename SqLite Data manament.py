@@ -53,7 +53,11 @@ def select_task_by_priority(conn,priority):
     rows = cur.fetchall()
 
     for row in rows:
-        print(row)
+        taxa = rows.select('table')[5:]
+
+    print("printing taxa")
+    print(taxa)
+
 
 def main():
     #database = r"C:\sqlite\db\pythonsqlite.db"
