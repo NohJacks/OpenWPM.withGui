@@ -39,8 +39,8 @@ def select_task_by_priority(conn,priority):
     cur = conn.cursor()
     print("finding all (ReadCookie)")
     print("Select * from javascript where func_name=readCookie")
-    cur.execute('Select * from javascript where func_name="readCookie"')
-
+    cur.execute('Select script_url from javascript')
+     #where func_name = "readCookie"'
 
     rows = cur.fetchall()
 
@@ -48,7 +48,7 @@ def select_task_by_priority(conn,priority):
         print(row)
 
 
-    print("finding all. ANYTHING AND EVERYTHING AND ALL OF THE TIME")
+"""    print("finding all. ANYTHING AND EVERYTHING AND ALL OF THE TIME")
     cur.execute('Select * from javascript')
     rows = cur.fetchall()
 
@@ -56,11 +56,11 @@ def select_task_by_priority(conn,priority):
         taxa = rows.select('table')[5:]
 
     print("printing taxa")
-    print(taxa)
+    print(taxa)"""
 
 
 def main():
-    database = r"C:\sqlite\db\pythonsqlite.db"
+    database = r"/home/ryan/PycharmProjects/OpenWPM.withGui/datadir/crawl-data.sqlite"
 
     # create a database connection
     conn = create_connection(database)
