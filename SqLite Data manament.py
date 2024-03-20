@@ -1,8 +1,10 @@
+import sqlite3
+from sqlite3 import Error
 
 def create_connection(database_file):
     """ create a database connection to the SQLite database
             specified by the db_file
-        :param db_file: database file
+        :param database_file: database file
         :return: Connection object or None
         """
     conn=None
@@ -35,7 +37,7 @@ def select_task_by_priority(conn,priority):
        :return:
        """
     cur = conn.cursor()
-    cur.execute("SElect * from tasks WHere Priority=?",(priority))
+    cur.execute('SElect * from javascript where func_name="readCookie"')
 
     rows = cur.fetchall()
 
@@ -43,7 +45,8 @@ def select_task_by_priority(conn,priority):
         print(row)
 
 def main():
-    database = r"C:\sqlite\db\pythonsqlite.db"
+    #database = r"C:\sqlite\db\pythonsqlite.db"
+    database = r"/home/ryan/PycharmProjects/OpenWPM.withGui/datadir/crawl-data.sqlite"
 
     # create a database connection
     conn = create_connection(database)
