@@ -60,8 +60,7 @@ def select_task_by_priority(conn,priority):
 
 
 def main():
-    #database = r"C:\sqlite\db\pythonsqlite.db"
-    database = r"/home/ryan/PycharmProjects/OpenWPM.withGui/datadir/crawl-data.sqlite"
+    database = r"C:\sqlite\db\pythonsqlite.db"
 
     # create a database connection
     conn = create_connection(database)
