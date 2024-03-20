@@ -37,8 +37,19 @@ def select_task_by_priority(conn,priority):
        :return:
        """
     cur = conn.cursor()
-    cur.execute('SElect * from javascript where func_name="readCookie"')
+    print("finding all (ReadCookie)")
+    print("Select * from javascript where func_name=readCookie")
+    cur.execute('Select * from javascript where func_name="readCookie"')
 
+
+    rows = cur.fetchall()
+
+    for row in rows:
+        print(row)
+
+
+    print("finding all. ANYTHING AND EVERYTHING AND ALL OF THE TIME")
+    cur.execute('Select * from javascript')
     rows = cur.fetchall()
 
     for row in rows:
