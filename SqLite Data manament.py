@@ -1,4 +1,3 @@
-import sqlite3
 from sqlite3 import Error
 
 def create_connection(database_file):
@@ -7,7 +6,7 @@ def create_connection(database_file):
         :param database_file: database file
         :return: Connection object or None
         """
-    conn=None
+    conn = None
     try:
         conn = sqlite3.connect(database_file)
     except Error as e:
@@ -37,15 +36,18 @@ def select_task_by_priority(conn,priority):
        :return:
        """
     cur = conn.cursor()
-    print("finding all (ReadCookie)")
-    print("Select * from javascript where func_name=readCookie")
-    cur.execute('Select script_url from javascript')
-     #where func_name = "readCookie"'
+    cur.execute("SElect * from tasks WHere Priority=?",(priority))
 
     rows = cur.fetchall()
 
     for row in rows:
         print(row)
+        print(++1)
+
+    file_path = "compare.txt"
+    with open("compare.txt", encoding="utf8") as files:
+        files.write(row)
+    print(f"File '{file_path}' created successfully.")
 
 
 """    print("finding all. ANYTHING AND EVERYTHING AND ALL OF THE TIME")
