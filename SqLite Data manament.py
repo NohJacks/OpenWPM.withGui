@@ -69,9 +69,17 @@ def main():
 
     # create a database connection
     conn = create_connection(database)
+    cur = conn.cursor()
+    cur.execute("""CREATE TABLE IF NOT EXISTS users(
+       userid INT PRIMARY KEY,
+       fname TEXT,
+       lname TEXT,
+       gender TEXT);
+    """)
+    conn.commit()
     with conn:
-        ##print("1. Query task by priority")
-        ##select_task_by_priority(conn,1)
+        print("1. Query task by priority")
+        select_task_by_priority(conn,1)
 
         print("2. Query ALL task ")
         select_all_tasks(conn)
