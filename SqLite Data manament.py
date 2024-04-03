@@ -44,10 +44,11 @@ def select_task_by_priority(conn,priority):
     for row in rows:
         print(row)
         print(++1)
+        list=len(row)
 
     file_path = "compare.txt"
     with open("compare.txt", encoding="utf8") as files:
-        files.write(row)
+        files.write(list)
     print(f"File '{file_path}' created successfully.")
 
 
