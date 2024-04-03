@@ -37,18 +37,18 @@ def select_task_by_priority(conn,priority):
        :return:
        """
     cur = conn.cursor()
-    cur.execute("SElect * from tasks WHere Priority=?",(priority))
+    cur.execute("Select * from tasks where Priority=?",(priority))
 
     rows = cur.fetchall()
 
     for row in rows:
         print(row)
-        print(++1)
-        list=len(row)
+
+        lis=len(row)
 
     file_path = "compare.txt"
     with open("compare.txt", encoding="utf8") as files:
-        files.write(list)
+        files.write(lis)
     print(f"File '{file_path}' created successfully.")
 
 
@@ -64,13 +64,14 @@ def select_task_by_priority(conn,priority):
 
 
 def main():
-    database = r"/home/ryan/PycharmProjects/OpenWPM.withGui/datadir/crawl-data.sqlite"
+    #database = r"/home/ryan/PycharmProjects/OpenWPM.withGui/datadir/crawl-data.sqlite"
+    database = "/home/ryan/PycharmProjects/OpenWPM.withGui/datadir/crawl-data.sqlite"
 
     # create a database connection
     conn = create_connection(database)
     with conn:
-        print("1. Query task by priority")
-        select_task_by_priority(conn,1)
+        ##print("1. Query task by priority")
+        ##select_task_by_priority(conn,1)
 
         print("2. Query ALL task ")
         select_all_tasks(conn)
