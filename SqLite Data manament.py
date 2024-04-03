@@ -70,13 +70,24 @@ def main():
     # create a database connection
     conn = create_connection(database)
     cur = conn.cursor()
+
     cur.execute("""CREATE TABLE IF NOT EXISTS users(
        userid INT PRIMARY KEY,
        fname TEXT,
        lname TEXT,
        gender TEXT);
     """)
+
+
     conn.commit()
+
+
+
+    conn = sqlite3.connect('/home/ryan/PycharmProjects/OpenWPM.withGui/datadir/crawl-data.sqlite')
+    cursor = conn.execute("PRAGMA table_info(mytable);")
+    results = cursor.fetchall()
+    print(results)
+
     with conn:
         print("1. Query task by priority")
         select_task_by_priority(conn,1)
