@@ -29,26 +29,21 @@ def select_all_tasks(conn):
     for row in rows:
         print(row)
 
-def select_task_by_priority(conn,priority):
-    """
-       Query tasks by priority
-       :param conn: the Connection object
-       :param priority:
-       :return:
-       """
+def  extract_javascript_cookies(conn):
     cur = conn.cursor()
-    cur.execute("Select * from tasks where Priority=?",(priority))
+    cur.execute('Select * from javascript')
 
     rows = cur.fetchall()
 
     for row in rows:
         print(row)
 
-        lis=len(row)
+        #lis=len(row)
 
     file_path = "compare.txt"
     with open("compare.txt", encoding="utf8") as files:
-        files.write(lis)
+        pass
+        #files.write(lis)
     print(f"File '{file_path}' created successfully.")
 
 
@@ -68,29 +63,14 @@ def main():
     database = "/home/ryan/PycharmProjects/OpenWPM.withGui/datadir/crawl-data.sqlite"
 
     # create a database connection
-    conn = create_connection(database)
-    cur = conn.cursor()
-
-    cur.execute("""CREATE TABLE IF NOT EXISTS users(
-       userid INT PRIMARY KEY,
-       fname TEXT,
-       lname TEXT,
-       gender TEXT);
-    """)
-
-
-    conn.commit()
-
-
-
-    conn = sqlite3.connect('/home/ryan/PycharmProjects/OpenWPM.withGui/datadir/crawl-data.sqlite')
+    conn = sqlite3.connect(database)
     cursor = conn.execute("PRAGMA table_info(mytable);")
     results = cursor.fetchall()
     print(results)
 
     with conn:
-        print("1. Query task by priority")
-        select_task_by_priority(conn,1)
+        print("JavaScript Cookies")
+        extract_javascript_cookies(conn,1)
 
         print("2. Query ALL task ")
         select_all_tasks(conn)
