@@ -15,48 +15,16 @@ def create_connection(database_file):
 
     return conn
 
-def select_all_tasks(conn):
-    """
-        Query all rows in the tasks table
-        :param conn: the Connection object
-        :return:
-        """
-    cur = conn.cursor()
-    cur.execute("select * from tasks")
-
-    rows = cur.fetchall()
-
-    for row in rows:
-        print(row)
 
 def  extract_javascript_cookies(conn):
     cur = conn.cursor()
-    cur.execute('Select * from javascript')
+    cur.execute('Select script_url from javascript')
 
     rows = cur.fetchall()
 
-    for row in rows:
-        print(row)
-
-        #lis=len(row)
-
-    file_path = "compare.txt"
-    with open("compare.txt", encoding="utf8") as files:
-        pass
-        #files.write(lis)
-    print(f"File '{file_path}' created successfully.")
-
-
-"""    print("finding all. ANYTHING AND EVERYTHING AND ALL OF THE TIME")
-    cur.execute('Select * from javascript')
-    rows = cur.fetchall()
-
-    for row in rows:
-        taxa = rows.select('table')[5:]
-
-    print("printing taxa")
-    print(taxa)"""
-
+    with open("compare.txt", "w+", encoding="utf8") as files:
+        for row in rows:
+            files.write(row[0] +  "\n")
 
 def main():
     #database = r"/home/ryan/PycharmProjects/OpenWPM.withGui/datadir/crawl-data.sqlite"
@@ -70,11 +38,7 @@ def main():
 
     with conn:
         print("JavaScript Cookies")
-        extract_javascript_cookies(conn,1)
-
-        print("2. Query ALL task ")
-        select_all_tasks(conn)
-
+        extract_javascript_cookies(conn)
 
 if __name__=='__main__':
     main()

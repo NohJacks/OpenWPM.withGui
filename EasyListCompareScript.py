@@ -6,7 +6,6 @@ class EasyCompare:
         self.JavaScriptList = javaScriptData
 
 
-
 trackers = []
 easytrackerlist = []
 privacytrackerlist = []
