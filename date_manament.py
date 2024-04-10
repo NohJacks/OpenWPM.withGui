@@ -16,19 +16,19 @@ def create_connection(database_file):
     return conn
 
 
-def  extract_javascript_cookies(conn):
+def  extract_javascript_cookies(conn,filename):
     cur = conn.cursor()
     cur.execute('Select script_url from javascript')
 
     rows = cur.fetchall()
 
-    with open("compare.txt", "w+", encoding="utf8") as files:
+    with open(filename, "w+", encoding="utf8") as files:
         for row in rows:
             files.write(row[0] +  "\n")
 
-def main():
+def main(filename):
     #database = r"/home/ryan/PycharmProjects/OpenWPM.withGui/datadir/crawl-data.sqlite"
-    database = "/home/ryan/PycharmProjects/OpenWPM.withGui/datadir/crawl-data.sqlite"
+    database = "./datadir/{}.sqlite".format(filename)
 
     # create a database connection
     conn = sqlite3.connect(database)
@@ -38,7 +38,7 @@ def main():
 
     with conn:
         print("JavaScript Cookies")
-        extract_javascript_cookies(conn)
+        extract_javascript_cookies(conn, filename)
 
 if __name__=='__main__':
-    main()
+    main("compare.txt")

@@ -9,16 +9,17 @@ from openwpm.config import BrowserParams, ManagerParams
 from openwpm.storage.sql_provider import SQLiteStorageProvider
 from openwpm.task_manager import TaskManager
 
+import date_manament
 
 class WMPcrawler:
 
-    def __init__(self, sitelist):
+    def __init__(self, name, sitelist):
         self.sites = sitelist
 
         self.display_mode: Literal["native", "headless", "xvfb"] = "native"
         self.display_mode = "headless"
         self.load_params()
-        self.configure_taskmanager("./datadir/", "./datadir/openwpm.log", "./datadir/crawl-data.sqlite")
+        self.configure_taskmanager("./datadir/", "./datadir/openwpm.log", "./datadir/{}.sqlite".format(name))
 
     def load_params(self, NUM_BROWSERS=2):
         # Loads the default ManagerParams
@@ -88,5 +89,6 @@ class WMPcrawler:
                 manager.execute_command_sequence(command_sequence)
 
 if __name__ == '__main__':
-    crawler = WMPcrawler(['http://www.dr.dk'])
+    crawler = WMPcrawler('DR', ['http://www.dr.dk'])
     crawler.run()
+    date_manament.main('{}.txt'.format.crawler.name)
