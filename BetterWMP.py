@@ -17,8 +17,10 @@ class WMPcrawler:
         self.sites = sitelist
 
         self.display_mode: Literal["native", "headless", "xvfb"] = "native"
+        # display mode "headless" means that the browser inst showen but runs in the background
         self.display_mode = "headless"
         self.load_params()
+        #here the path is defined. ive made it so that the file name is equal to "name"
         self.configure_taskmanager("./datadir/", "./datadir/openwpm.log", "./datadir/{}.sqlite".format(name))
 
     def load_params(self, NUM_BROWSERS=2):
@@ -89,6 +91,8 @@ class WMPcrawler:
                 manager.execute_command_sequence(command_sequence)
 
 if __name__ == '__main__':
+    #here the website is chosen from the veribale "sitelist" and named after "name"
     crawler = WMPcrawler('DR', ['http://www.dr.dk'])
     crawler.run()
+    #runs date_manament.py and sends over the txt file
     date_manament.main('{}.txt'.format.crawler.name)

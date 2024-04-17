@@ -1,76 +1,82 @@
 
 from adblockparser import AdblockRules
-class EasyCompare:
-    def DataAnnalises(self, javaData,javaScriptData):
-        self.JavaList = javaData
-        self.JavaScriptList = javaScriptData
+
+class CookieComparator():
+    def __init__(self, name):
+        self.load_trackers()
+        self.name = name
+
+    def setDatalist(self, datalist):
+        self.datalist = datalist
+
+        ('{}.txt'.format(self.name))
 
 
-trackers = []
-easytrackerlist = []
-privacytrackerlist = []
-cookietrackerlist = []
-socialtrackerlist = []
-annoyanctrackerlist = []
+    def load_trackers(self):
+        self.trackers = []
+        self.easytrackerlist = []
+        self.privacytrackerlist = []
+        self.cookietrackerlist = []
+        self.socialtrackerlist = []
+        self.annoyanctrackerlist = []
 
-with open("reddit_javascript_2.txt", encoding="utf8") as cookies:
-    datalist = cookies.readlines()
+        with open("easylist.txt", encoding="utf8") as easylist:
+            self.easytrackers = easylist.readlines()
+        self.easyrules = AdblockRules(self.easytrackers)
 
-with open("easylist.txt", encoding="utf8") as easylist:
-    easytrackers = easylist.readlines()
-easyrules = AdblockRules(easytrackers)
+        with open("easyprivacy.txt", encoding="utf8") as privacylist:
+            self.privacytrackers = privacylist.readlines()
+        self.privacyrules = AdblockRules(self.privacytrackers)
 
-with open("easyprivacy.txt", encoding="utf8") as privacylist:
-    privacytrackers = privacylist.readlines()
-privacyrules = AdblockRules(privacytrackers)
+        with open("easycookie.txt", encoding="utf8") as cookielist:
+            self.cookietrackers = cookielist.readlines()
+        self.cookierules = AdblockRules(self.cookietrackers)
 
-with open("easycookie.txt", encoding="utf8") as cookielist:
-    cookietrackers = cookielist.readlines()
-cookierules = AdblockRules(cookietrackers)
+        with open("easysocial.txt", encoding="utf8") as sociallist:
+            self.socialtrackers = sociallist.readlines()
+        self.socialrules = AdblockRules(self.socialtrackers)
 
-with open("easysocial.txt", encoding="utf8") as sociallist:
-    socialtrackers = sociallist.readlines()
-socialrules = AdblockRules(socialtrackers)
+        # with open("easyannoyance.txt", encoding="utf8") as annoyanclist:
+        # self.annoyanctrackers = annoyanclist.readlines()
+        # annoyancrules = AdblockRules(self.annoyanctrackers)
 
-# with open("easyannoyance.txt", encoding="utf8") as annoyanclist:
-# annoyanctrackers = annoyanclist.readlines()
-# annoyancrules = AdblockRules(annoyanctrackers)
+    def compare(self):
+        print("running compare.")
+        "skal der self. på data og datalist?"
+        for data in self.datalist:
+            if self.easyrules.should_block(data):
+                self.easytrackerlist.append(data)
+            if self.privacyrules.should_block(data):
+                self.privacytrackerlist.append(data)
+            if self.cookierules.should_block(data):
+                self.cookietrackerlist.append(data)
+            if self.socialrules.should_block(data):
+                self.socialtrackerlist.append(data)
 
+        print("easy-list:")
+        print(self.easytrackerlist)
+        print(len(self.easytrackerlist))
 
-print("easy-list:")
-for data in datalist:
-    if easyrules.should_block(data):
-        easytrackerlist.append(data)
-    if privacyrules.should_block(data):
-        privacytrackerlist.append(data)
-    if cookierules.should_block(data):
-        cookietrackerlist.append(data)
-    if socialrules.should_block(data):
-        socialtrackerlist.append(data)
+        print("privacy-list:")
+        print(self.privacytrackerlist)
+        print(len(self.privacytrackerlist))
 
-print(easytrackerlist)
-print(len(easytrackerlist))
+        print("cookie-list:")
+        print(self.cookietrackerlist)
+        print(len(self.cookietrackerlist))
 
-print("privacy-list:")
-print(privacytrackerlist)
-print(len(privacytrackerlist))
+        print("social-list:")
+        print(self.socialtrackerlist)
+        print(len(self.socialtrackerlist))
 
-print("cookie-list:")
-print(cookietrackerlist)
-print(len(cookietrackerlist))
+        print("cookie-list:")
+        print(self.cookietrackerlist)
+        print(len(self.cookietrackerlist))
 
-print("social-list:")
-print(socialtrackerlist)
-print(len(socialtrackerlist))
+        print("annoyanc-list:")
+        # for data in datalist:
+        # if annoyancrules.should_block(data):
+        #     annoyanctrackerlist.append(data)
 
-print("cookie-list:")
-print(cookietrackerlist)
-print(len(cookietrackerlist))
-
-print("annoyanc-list:")
-# for data in datalist:
-# if annoyancrules.should_block(data):
-#     annoyanctrackerlist.append(data)
-
-# print(annoyanctrackerlist)
-# print(len(annoyanctrackerlist))
+        # print(annoyanctrackerlist)
+        # print(len(annoyanctrackerlist))

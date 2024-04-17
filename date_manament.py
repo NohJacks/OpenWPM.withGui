@@ -1,4 +1,5 @@
 import sqlite3
+import EasyListCompareScript
 from sqlite3 import Error
 
 def create_connection(database_file):
@@ -16,29 +17,37 @@ def create_connection(database_file):
     return conn
 
 
-def  extract_javascript_cookies(conn,filename):
+def extract_javascript_cookies(conn,filename):
     cur = conn.cursor()
     cur.execute('Select script_url from javascript')
 
     rows = cur.fetchall()
 
+    datalist = []
     with open(filename, "w+", encoding="utf8") as files:
         for row in rows:
             files.write(row[0] +  "\n")
+            datalist.append(row[0])
+    return datalist
 
 def main(filename):
     #database = r"/home/ryan/PycharmProjects/OpenWPM.withGui/datadir/crawl-data.sqlite"
     database = "./datadir/{}.sqlite".format(filename)
 
     # create a database connection
-    conn = sqlite3.connect(database)
-    cursor = conn.execute("PRAGMA table_info(mytable);")
-    results = cursor.fetchall()
-    print(results)
+    conn = create_connection(database)
+    #cursor = conn.execute("PRAGMA table_info(mytable);")
+    #results = cursor.fetchall()
+    #print(results)
 
     with conn:
         print("JavaScript Cookies")
-        extract_javascript_cookies(conn, filename)
+        datalist = extract_javascript_cookies(conn, filename)
+        comparator = EasyListCompareScript.CookieComparator('test1')
+        comparator.setDatalist(datalist)
+        comparator.compare()
+
 
 if __name__=='__main__':
-    main("compare.txt")
+    pass
+
