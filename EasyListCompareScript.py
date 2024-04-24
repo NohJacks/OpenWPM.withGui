@@ -1,4 +1,6 @@
+import matplotlib.pyplot as plt
 
+import numpy as np
 from adblockparser import AdblockRules
 
 class CookieComparator():
@@ -56,6 +58,26 @@ class CookieComparator():
         print("easy-list:")
         print(self.easytrackerlist)
         print(len(self.easytrackerlist))
+        print(len(self.datalist))
+
+        dataLen = len(self.datalist)
+        easyLen = len(self.easytrackerlist)
+
+
+        division_result1 = dataLen/easyLen
+
+        proportion1 = division_result1 / (division_result1 + 1)
+
+        proportion2 = 1 / (division_result1 + 1)
+
+        # Create a pie chart
+
+        labels = ['Length 1', 'Length 2']
+        sizes = [proportion1, proportion2]
+        colors = ['blue', 'red']
+        fig, ax = plt.subplots()
+        ax.pie(sizes, labels=labels, colors=colors, autopct='%1.1f%%')
+        plt.show()
 
         print("privacy-list:")
         print(self.privacytrackerlist)
@@ -73,10 +95,3 @@ class CookieComparator():
         print(self.cookietrackerlist)
         print(len(self.cookietrackerlist))
 
-        print("annoyanc-list:")
-        # for data in datalist:
-        # if annoyancrules.should_block(data):
-        #     annoyanctrackerlist.append(data)
-
-        # print(annoyanctrackerlist)
-        # print(len(annoyanctrackerlist))
