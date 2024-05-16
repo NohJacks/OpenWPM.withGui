@@ -2,22 +2,21 @@ import sqlite3
 import EasyListCompareScript
 from sqlite3 import Error
 
+
 def create_connection(database_file):
-    """ create a database connection to the SQLite database
-            specified by the db_file
-        :param database_file: database file
-        :return: Connection object or None
-        """
+    # her laves databasen connection til SQlite database
+
     conn = None
     try:
         conn = sqlite3.connect(database_file)
     except Error as e:
-        print(e)
+        print(e) #test/debug
 
     return conn
 
 
 def extract_javascript_cookies(conn,filename):
+    """her bliver script_url fra javascript lavet og lagt in i datalist"""
     cur = conn.cursor()
     cur.execute('Select script_url from javascript')
 
@@ -30,18 +29,18 @@ def extract_javascript_cookies(conn,filename):
             datalist.append(row[0])
     return datalist
 
-def main(filename):
-    #database = r"/home/ryan/PycharmProjects/OpenWPM.withGui/datadir/crawl-data.sqlite"
+def main(filename): #starter her efter betterWMP
+
+    """her bliver vejen til hvor datafilen skal definret"""
     database = "./datadir/{}.sqlite".format(filename)
 
-    # create a database connection
+    # her laves databasen connection til SQlite database
     conn = create_connection(database)
-    #cursor = conn.execute("PRAGMA table_info(mytable);")
-    #results = cursor.fetchall()
-    #print(results)
+
 
     with conn:
-        print("JavaScript Cookies")
+        print("Connection")
+
         datalist = extract_javascript_cookies(conn, filename)
         comparator = EasyListCompareScript.CookieComparator('test1')
         comparator.setDatalist(datalist)
