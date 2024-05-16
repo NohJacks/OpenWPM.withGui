@@ -1,7 +1,6 @@
+from adblockparser import AdblockRules
 import matplotlib.pyplot as plt
 
-import numpy as np
-from adblockparser import AdblockRules
 
 class CookieComparator():
     def __init__(self, name):

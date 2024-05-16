@@ -92,7 +92,7 @@ class WMPcrawler:
 
 if __name__ == '__main__':
     #here the website is chosen from the veribale "sitelist" and named after "name"
-    crawler = WMPcrawler('Test1', ['http://www.dr.dk'])
+    crawler = WMPcrawler('Test2ekstra', ['http://ekstrabladet.dk'])
     crawler.run()
     #runs date_manament.py and sends over the txt file
     date_manament.main('{}'.format(crawler.name))
