@@ -91,7 +91,7 @@ class WMPcrawler:
                 manager.execute_command_sequence(command_sequence)
 
 if __name__ == '__main__':
-    print("eksempel webside 'http://www.dr.dk'")
+    print("eksempel webside 'http://www.dr.dk' eller 'https://ekstrabladet.dk'")
     print("indtast website'(s))")
     sidelist = str(input())
     sidelist2 = sidelist.split()
@@ -100,8 +100,8 @@ if __name__ == '__main__':
     print("indtast navn på test")
     navntest = str(input())
     #here the website is chosen from the veribale "sitelist" and named after "name"
-    crawler = WMPcrawler('Test2ekstras', ['http://www.dr.dk'])
-    #crawler = WMPcrawler(navntest, ['http://ekstrabladet.dk'])
+    #crawler = WMPcrawler('Test2ekstras', ['http://www.dr.dk'])
+    crawler = WMPcrawler(navntest, sidelist2 )
     crawler.run()
     #runs date_manament.py and sends over the txt file
     date_manament.main('{}'.format(crawler.name))

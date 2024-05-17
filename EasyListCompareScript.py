@@ -43,7 +43,7 @@ class CookieComparator():
 
     def compare(self):
         print("running compare.")
-        "skal der self. på data og datalist?"
+        "skriv dokumentation"
         for data in self.datalist:
             if self.easyrules.should_block(data):
                 self.easytrackerlist.append(data)
@@ -71,7 +71,7 @@ class CookieComparator():
 
         # Create a pie chart
 
-        labels = ['Length 1', 'Length 2']
+        labels = ['nontrackers', 'trackers']
         sizes = [proportion1, proportion2]
         colors = ['blue', 'red']
         fig, ax = plt.subplots()

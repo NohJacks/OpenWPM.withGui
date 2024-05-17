@@ -42,7 +42,7 @@ def main(filename): #starter her efter betterWMP
         print("Connection")
 
         datalist = extract_javascript_cookies(conn, filename)
-        comparator = EasyListCompareScript.CookieComparator('test1')
+        comparator = EasyListCompareScript.CookieComparator('test69')
         comparator.setDatalist(datalist)
         comparator.compare()
 
