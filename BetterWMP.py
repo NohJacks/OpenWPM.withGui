@@ -91,10 +91,11 @@ class WMPcrawler:
                 manager.execute_command_sequence(command_sequence)
 
 if __name__ == '__main__':
+    print("eksempel webside 'http://www.dr.dk'")
     print("indtast website'(s))")
     sidelist = str(input())
     sidelist2 = sidelist.split()
-    print(sidelist2)
+    print(sidelist2) # til test
 
     print("indtast navn på test")
     navntest = str(input())
