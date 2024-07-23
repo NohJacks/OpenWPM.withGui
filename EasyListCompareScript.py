@@ -96,8 +96,10 @@ class CookieComparator():
 
         labels = ['nontrackers', 'trackers']
         sizes = [proportion1, proportion2]
+        sizes2 = [dataLen, trackerResult]
         colors = ['blue', 'red']
         fig, ax = plt.subplots()
         ax.pie(sizes, labels=labels, colors=colors, autopct='%1.1f%%')
         plt.show()
+        ax.pie(sizes2, labels=labels, colors=colors, autopct='%1.1f%%')
 
