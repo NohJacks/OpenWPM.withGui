@@ -54,29 +54,14 @@ class CookieComparator():
             if self.socialrules.should_block(data):
                 self.socialtrackerlist.append(data)
 
+
+        print("datalist lenth")
+        print(len(self.datalist))
         print("easy-list:")
         print(self.easytrackerlist)
         print(len(self.easytrackerlist))
-        print(len(self.datalist))
-
-        dataLen = len(self.datalist)
-        easyLen = len(self.easytrackerlist)
 
 
-        division_result1 = dataLen/easyLen
-
-        proportion1 = division_result1 / (division_result1 + 1)
-
-        proportion2 = 1 / (division_result1 + 1)
-
-        # Create a pie chart
-
-        labels = ['nontrackers', 'trackers']
-        sizes = [proportion1, proportion2]
-        colors = ['blue', 'red']
-        fig, ax = plt.subplots()
-        ax.pie(sizes, labels=labels, colors=colors, autopct='%1.1f%%')
-        plt.show()
 
         print("privacy-list:")
         print(self.privacytrackerlist)
@@ -93,4 +78,26 @@ class CookieComparator():
         print("cookie-list:")
         print(self.cookietrackerlist)
         print(len(self.cookietrackerlist))
+
+        dataLen = len(self.datalist)
+        easyLen = len(self.easytrackerlist)
+        privacyLen = len(self.privacytrackerlist)
+        cookieLen = len(self.cookietrackerlist)
+        socialLen = len(self.socialtrackerlist)
+
+        trackerResult = easyLen + privacyLen + cookieLen +socialLen
+        division_result1 = dataLen / trackerResult
+
+        proportion1 = division_result1 / (division_result1 + 1)
+
+        proportion2 = 1 / (division_result1 + 1)
+
+        # Create a pie chart
+
+        labels = ['nontrackers', 'trackers']
+        sizes = [proportion1, proportion2]
+        colors = ['blue', 'red']
+        fig, ax = plt.subplots()
+        ax.pie(sizes, labels=labels, colors=colors, autopct='%1.1f%%')
+        plt.show()
 
